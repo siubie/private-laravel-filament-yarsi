@@ -12,7 +12,13 @@
 
 <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] p-6 min-h-screen">
     <div class="max-w-5xl mx-auto">
-        <h1 class="text-2xl font-medium mb-4">Todo List</h1>
+        <div class="flex items-center justify-between mb-4">
+            <h1 class="text-2xl font-medium">Todo List</h1>
+            <div>
+                <a href="{{ route('todos.create') }}"
+                    class="inline-block px-4 py-2 bg-[#1b1b18] text-white rounded-sm text-sm">+ Create Todo</a>
+            </div>
+        </div>
 
         @if ($todos->count())
             <div class="overflow-x-auto bg-white dark:bg-[#161615] p-4 rounded shadow">
@@ -39,8 +45,21 @@
                                 <td class="px-3 py-2 align-top">{{ $todo->status }}</td>
                                 <td class="px-3 py-2 align-top">{{ $todo->due_date }}</td>
                                 <td class="px-3 py-2 align-top">
-                                    <a href="{{ route('todos.show', $todo) }}"
-                                        class="inline-block px-3 py-1 text-sm bg-[#1b1b18] text-white rounded-sm">View</a>
+                                    <div class="flex items-center gap-2">
+                                        <a href="{{ route('todos.show', $todo) }}"
+                                            class="inline-block px-3 py-1 text-sm bg-[#1b1b18] text-white rounded-sm">View</a>
+                                        <a href="{{ route('todos.edit', $todo) }}"
+                                            class="inline-block px-3 py-1 text-sm bg-[#706f6c] text-white rounded-sm">Edit</a>
+
+                                        <form action="{{ route('todos.destroy', $todo) }}" method="POST"
+                                            onsubmit="return confirm('Are you sure you want to delete this todo?');"
+                                            style="display:inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="inline-block px-3 py-1 text-sm bg-[#F53003] text-white rounded-sm">Delete</button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

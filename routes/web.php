@@ -8,4 +8,4 @@ Route::get('/', function () {
 });
 
 // Todos resource routes
-Route::resource('todos', TodoController::class)->only(['index', 'show']);
+Route::resource('todos', TodoController::class);
