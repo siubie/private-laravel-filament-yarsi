@@ -22,6 +22,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
         //panggil todo seeder
-        $this->call(TodoSeeder::class);
+        // $this->call(TodoSeeder::class);
     }
 }
