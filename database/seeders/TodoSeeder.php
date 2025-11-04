@@ -13,6 +13,6 @@ class TodoSeeder extends Seeder
     public function run(): void
     {
         //gunanya memanggil factory untuk membuat 50 data palsu di tabel todos
-        \App\Models\Todo::factory(50)->create();
+        \App\Models\Todo::factory(15)->create();
     }
 }

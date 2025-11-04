@@ -13,7 +13,9 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
+        // tampilkan todo list dengan pagination
+        $todos = Todo::paginate(10);
+        return view('todos.index', compact('todos'));
     }
 
     /**
